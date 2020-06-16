@@ -1,20 +1,26 @@
 <template>
   <div>
     <section class="produtos-container">
-      <div class="produtos" v-if="products">
-        <div class="produto" v-for="(product, index) in products" :key="index">
-          <router-link to="/">
-            <img v-if="product.fotos" :src="product.fotos[0]" :alt="product.fotos[0].titulo" />
-            <p class="preco">{{ product.preco }}</p>
-            <h2 class="titulo">{{ product.nome }}</h2>
-            <p class="">{{ product.descricao }}</p>
-          </router-link>
+      <transition mode="out-in">
+        <div class="produtos" v-if="products" key="produtos">
+          <div class="produto" v-for="(product, index) in products" :key="index">
+            <router-link to="/">
+              <img v-if="product.fotos" :src="product.fotos[0]" :alt="product.fotos[0].titulo" />
+              <p class="preco">{{ product.preco }}</p>
+              <h2 class="titulo">{{ product.nome }}</h2>
+              <p class="">{{ product.descricao }}</p>
+            </router-link>
+          </div>
+          <PaginateProducts :totalProducts="totalProducts" :productsPerPage="productsPerPage" />
         </div>
-        <PaginateProducts :totalProducts="totalProducts" :productsPerPage="productsPerPage" />
-      </div>
-      <div class="sem-resultados" v-else>
-        <p>Busca sem resultados. Tente buscar por outro termo.</p>
-      </div>
+        <div class="sem-resultados"
+          v-else-if="products && products.length == 0"
+          key="sem-resultados"
+        >
+          <p>Busca sem resultados. Tente buscar por outro termo.</p>
+        </div>
+        <LoadingPage v-else key="carregando"/>
+      </transition>
     </section>
   </div>
 </template>
@@ -39,6 +45,7 @@ export default {
   },
   methods: {
     getProducts() {
+      this.products = null;
       service.get(this.url).then((response) => {
         if (response.headers['x-total-count']) {
           this.totalProducts = Number(response.headers['x-total-count']);
