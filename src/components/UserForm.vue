@@ -1,23 +1,23 @@
 <template>
   <form action="">
     <label for="nome">Nome</label>
-    <input type="text" id="name" name="name" v-model="name">
+    <input type="text" id="name" name="name" v-model="nome">
     <label for="email">Email</label>
     <input type="email" id="email" name="email" v-model="email">
     <label for="password">Senha</label>
-    <input type="password" id="password" name="password" v-model="password">
+    <input type="password" id="password" name="password" v-model="senha">
     <label for="cep">CEP</label>
     <input type="text" id="cep" name="cep" v-model="cep">
     <label for="street">Rua</label>
-    <input type="text" id="street" name="street" v-model="street">
+    <input type="text" id="street" name="street" v-model="rua">
     <label for="number">Número</label>
-    <input type="text" id="number" name="number" v-model="number">
+    <input type="text" id="number" name="number" v-model="numero">
     <label for="neighborhood">Bairro</label>
-    <input type="text" id="neighborhood" name="neighborhood" v-model="neighborhood">
+    <input type="text" id="neighborhood" name="neighborhood" v-model="bairro">
     <label for="city">Cidade</label>
-    <input type="text" id="city" name="city" v-model="city">
+    <input type="text" id="city" name="city" v-model="cidade">
     <label for="state">Estado</label>
-    <input type="text" id="state" name="state" v-model="state">
+    <input type="text" id="state" name="state" v-model="estado">
     <div class="button">
       <slot></slot>
     </div>
@@ -26,7 +26,81 @@
 
 <script>
 export default {
-
+  name: 'UserForm',
+  computed: {
+    nome: {
+      get() {
+        return this.$store.state.user.nome;
+      },
+      set(value) {
+        this.$store.commit('UPDATE_USUARIO', { nome: value });
+      },
+    },
+    email: {
+      get() {
+        return this.$store.state.user.email;
+      },
+      set(value) {
+        this.$store.commit('UPDATE_USUARIO', { email: value });
+      },
+    },
+    senha: {
+      get() {
+        return this.$store.state.user.senha;
+      },
+      set(value) {
+        this.$store.commit('UPDATE_USUARIO', { senha: value });
+      },
+    },
+    cep: {
+      get() {
+        return this.$store.state.user.cep;
+      },
+      set(value) {
+        this.$store.commit('UPDATE_USUARIO', { cep: value });
+      },
+    },
+    rua: {
+      get() {
+        return this.$store.state.user.rua;
+      },
+      set(value) {
+        this.$store.commit('UPDATE_USUARIO', { rua: value });
+      },
+    },
+    numero: {
+      get() {
+        return this.$store.state.user.numero;
+      },
+      set(value) {
+        this.$store.commit('UPDATE_USUARIO', { numero: value });
+      },
+    },
+    bairro: {
+      get() {
+        return this.$store.state.user.bairro;
+      },
+      set(value) {
+        this.$store.commit('UPDATE_USUARIO', { bairro: value });
+      },
+    },
+    cidade: {
+      get() {
+        return this.$store.state.user.cidade;
+      },
+      set(value) {
+        this.$store.commit('UPDATE_USUARIO', { cidade: value });
+      },
+    },
+    estado: {
+      get() {
+        return this.$store.state.user.estado;
+      },
+      set(value) {
+        this.$store.commit('UPDATE_USUARIO', { estado: value });
+      },
+    },
+  },
 };
 </script>
 
