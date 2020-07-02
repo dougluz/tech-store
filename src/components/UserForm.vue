@@ -7,7 +7,7 @@
     <label for="password">Senha</label>
     <input type="password" id="password" name="password" v-model="senha">
     <label for="cep">CEP</label>
-    <input type="text" id="cep" name="cep" v-model="cep">
+    <input type="text" id="cep" name="cep" v-model="cep" @keyup="preencherCep">
     <label for="street">Rua</label>
     <input type="text" id="street" name="street" v-model="rua">
     <label for="number">Número</label>
@@ -25,8 +25,24 @@
 </template>
 
 <script>
+import getCep from '@/services/cepService';
+
 export default {
   name: 'UserForm',
+  methods: {
+    preencherCep() {
+      const cep = this.cep.replace(/\D/g, '');
+      console.log(cep);
+      if (cep.length === 8) {
+        getCep(cep).then((response) => {
+          this.rua = response.data.logradouro;
+          this.bairro = response.data.bairro;
+          this.cidade = response.data.localidade;
+          this.estado = response.data.uf;
+        });
+      }
+    },
+  },
   computed: {
     nome: {
       get() {
