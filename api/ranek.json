@@ -10,6 +10,30 @@
       "numero": "25",
       "estado": "RJ",
       "cidade": "Rio de Janeiro"
+    },
+    {
+      "id": "maria@mail.com",
+      "nome": "maria das neves",
+      "email": "maria@mail.com",
+      "senha": "trn1234",
+      "cep": "89304005",
+      "rua": "Avenida Presidente Nereu Ramos",
+      "numero": "123",
+      "bairro": "Vila Formosa",
+      "cidade": "Mafra",
+      "estado": "SC"
+    },
+    {
+      "id": "vanda@zoreck.com",
+      "nome": "vanda zoreck",
+      "email": "vanda@zoreck.com",
+      "senha": "douglas",
+      "cep": "89304005",
+      "rua": "Avenida Presidente Nereu Ramos",
+      "numero": "412",
+      "bairro": "Vila Formosa",
+      "cidade": "Mafra",
+      "estado": "SC"
     }
   ],
   "produto": [
